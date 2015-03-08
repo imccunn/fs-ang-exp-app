@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Compositions</title>
+	</head>
+	<body data-ng-app="compositionsApp">
+		<main data-ng-controller="compositionsController" data-ng-init="getAll()">
+			<h2>Compositions:</h2>
+			<form name="newCompositionName">
+				<label for="newCompTitle">Title:</label>
+				<input type="text" id="newCompTitle" data-ng-model="newComposition.title">
+
+				<button type="submit" data-ng-click="create(newComposition)">Save Composition</button>
+			</form>
+
+			<ul data-ng-repeat="composition in compositions">
+				<li style="border: 1px solid #000;">
+					<ul>
+						<li>{{composition.title}}</li>
+						<li>{{composition.subtitle}}</li>
+						<li>{{composition.opusNumber}}</li>
+						<li>{{composition.yearWritten}}</li>
+						<li>{{composition.composer}}</li>
+						<li>{{composition.duration}}</li>
+						<li>{{composition.publisher}}</li>
+						<li>{{composition.copyright}}</li>
+						<li>{{composition.description}}</li>
+					</ul>
+				</li>
+			</ul>
+		</main>
+		
+	<script src="bundle.js"></script>
+	</body>
+
+</html>
