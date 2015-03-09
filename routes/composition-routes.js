@@ -17,7 +17,7 @@ module.exports = function(app) {
     });
   });
   
-  app.post('/notes', function(req, res) {
+  app.post('/compositions', function(req, res) {
     var newComposition = new Composition(req.body);
     newComposition.save(function(err, composition) {
       if (err) {
@@ -28,7 +28,7 @@ module.exports = function(app) {
     });
   });
 
-  app.put('/composition/:id', function(req, res) {
+  app.put('/compositions/:id', function(req, res) {
     var updatedComposition = req.body;
     delete updatedComposition._id;
     Composition.update({_id: req.params.id}, updatedComposition, function(err) {
@@ -40,7 +40,7 @@ module.exports = function(app) {
     });
   });
 
-  app.delete('/notes/:id', function(req, res) {
+  app.delete('/compositions/:id', function(req, res) {
     Composition.remove({_id: req.params.id}, function(err) {
       if (err) {
         res.status(500).send({'msg': 'Error: Unable to delete composition data.'});

@@ -6,10 +6,10 @@ var compositionSchema = new mongoose.Schema({
   
   title: String,
   subtitle: String,
-  opusNumber: Number,
-  yearWritten: Number,
+  opusNumber: String,
+  yearWritten: String,
   composer: String,
-  duration: Number,
+  duration: String,
   publisher: String,
   copyright: String,
   description: String

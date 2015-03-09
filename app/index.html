@@ -6,10 +6,45 @@
 	</head>
 	<body data-ng-app="compositionsApp">
 		<main data-ng-controller="compositionsController" data-ng-init="getAll()">
-			<h2>Compositions:</h2>
+			<h1>Compositions Database</h1>
+			<hr>
+			<h3>New Composition:</h3>
 			<form name="newCompositionName">
 				<label for="newCompTitle">Title:</label>
 				<input type="text" id="newCompTitle" data-ng-model="newComposition.title">
+				<br>
+
+				<label for="newCompSubtitle">Subtitle: </label>
+				<input type="text" id="newCompSubtitle" data-ng-model="newComposition.subtitle">
+				<br>
+
+				<label for="newCompOpusNum">Opus: </label>
+				<input type="text" id="newCompOpusNum" data-ng-model="newComposition.opusNumber">
+				<br>
+
+				<label for="newCompYear">Year: </label>
+				<input type="text" id="newCompYear" data-ng-model="newComposition.yearWritten">
+				<br>
+
+				<label for="newComposer">Composer: </label>
+				<input type="text" id="newComposer" data-ng-model="newComposition.composer">
+				<br>
+
+				<label for="newDuration">Duration: </label>
+				<input type="text" id="newDuration" data-ng-model="newComposition.duration">
+				<br>
+
+				<label for="newPublisher">Publisher: </label>
+				<input type="text" id="newPublisher" data-ng-model="newComposition.publisher">
+				<br>
+
+				<label for="newCopyright">Copyright: </label>
+				<input type="text" id="newCopyright" data-ng-model="newComposition.copyright">
+				<br>
+
+				<label for="newDescription">Description: </label>
+				<input type="text" id="newDescription" data-ng-model="newComposition.description">
+				<br>
 
 				<button type="submit" data-ng-click="create(newComposition)">Save Composition</button>
 			</form>
@@ -27,11 +62,12 @@
 						<li>{{composition.copyright}}</li>
 						<li>{{composition.description}}</li>
 					</ul>
+					<button data-ng-click="remove(composition)">Delete Composition</button>
 				</li>
 			</ul>
 		</main>
 		
-	<script src="bundle.js"></script>
+		<script src="bundle.js"></script>
 	</body>
 
 </html>

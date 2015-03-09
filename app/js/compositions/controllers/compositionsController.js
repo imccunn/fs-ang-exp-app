@@ -6,10 +6,10 @@ module.exports = function(app) {
 
     $scope.getAll = function() {
       $http({
-        mthod: 'GET',
+        method: 'GET',
         url: '/api/v1/compositions'
       })
-      .sucess(function(data) {
+      .success(function(data) {
         $scope.compositions = data;
       })
       .error(function(data) {
@@ -20,11 +20,11 @@ module.exports = function(app) {
     $scope.create = function(composition) {
       $http({
         method: 'POST',
-        url: 'api/v1/compositions',
+        url: '/api/v1/compositions',
         data: composition
       })
       .success(function(data) {
-        $scope.notes.push(data);
+        $scope.compositions.push(data);
       })
       .error(function(data) {
         console.log(data);
@@ -33,7 +33,7 @@ module.exports = function(app) {
 
     $scope.save = function(composition) {
       $http({
-        mthod: 'PUT',
+        method: 'PUT',
         url: '/api/v1/compositions/' + composition._id,
         data: composition
       })
@@ -48,7 +48,7 @@ module.exports = function(app) {
     $scope.remove = function(composition) {
       $http({
         method: 'DELETE',
-        url: 'api/v1/compositions/' + composition._id
+        url: '/api/v1/compositions/' + composition._id
       })
       .success(function() {
         $scope.compositions.splice($scope.compositions.indexOf(composition), 1);

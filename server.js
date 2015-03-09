@@ -13,8 +13,8 @@ var mainRouter = express.Router();
 
 compositionsRoutes(mainRouter);
 
-app.use('api/v1', router);
+app.use('/api/v1', mainRouter);
 
 app.listen(process.env.PORT || 3333, function() {
-  console.log('Server listening on port' + (process.env.PORT || 3333));
+  console.log('Server listening on port ' + (process.env.PORT || 3333));
 });
