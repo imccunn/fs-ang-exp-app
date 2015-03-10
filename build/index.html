@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Compositions</title>
+		<style type="text/css">
+			#submit-comp {
+				height: 30px;
+				background-color: #333;
+				color: #fff;
+			}
+
+			nav ul li {
+				display: inline;
+				list-style-type: none;
+			}
+
+			nav ul li a {
+				color: #000;
+				text-decoration: none;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			nav ul li a:visited {
+				color: #000;
+			}
+			nav ul li a:hover {
+				text-decoration: underline;
+			}
+
+			.primary {
+				max-width: 800px;
+				margin: auto;
+				border: 1px solid #000;
+				padding: 25px;
+			}
+
+			.composition-listing {
+				margin: 5px;
+				padding: 5px;
+				border: 1px solid #444;
+				list-style-type: none;
+				margin-bottom: 15px;
+				clear: both;
+			}
+
+			.composition-listing ul li {
+				list-style-type: none;
+				font-size: 12px;
+			}
+
+			.composition-listing .title {
+				font-size: 16px;
+			}
+
+			.composition-listing .subtitle {
+				font-style: italic;
+			}
+
+			.composition-listing .opusNumber {
+
+			}
+
+			.composition-listing .yearWritten {
+				font-size: 10px;
+			}
+
+			.composition-listing .composer {
+				
+			}
+			.composition-listing .duration {
+
+			}
+			.composition-listing .publisher {
+
+			}
+			.composition-listing .copyright {
+
+			}
+			.composition-listing .description {
+
+			}
+
+			.remove-comp {
+				float: right;
+				margin-top: 10px;
+				border: 1px solid #444;	
+				background-color: #ff7119;
+			}
+		</style>
+	</head>
+	<body data-ng-app="compositionsApp">
+		<div class="primary">
+			<div class="header">
+				<div class="title">
+					<h1>Composition Database</h1>
+					<h4><i>v 0.1.0</i></h4>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Settings</a></li>
+						<li><a href="#">Compositions</a></li>
+						<li><a href="#">Account</a></li>
+						<li><a href="#">Tools</a></li>
+					</ul>
+				</nav>
+			</div>	
+			<main data-ng-controller="compositionsController" data-ng-init="getAll()" >
+				
+
+				<h4>New Composition:</h4>
+				<form name="newCompositionName" id="newCompForm">
+					<table>
+						<tr>
+							<td><label for="newCompTitle">Title:</label></td>
+							<td><input type="text" id="newCompTitle" data-ng-model="newComposition.title"></td>
+						</tr>
+						<tr>
+							<td><label for="newCompSubtitle">Subtitle: </label></td>
+							<td><input type="text" id="newCompSubtitle" data-ng-model="newComposition.subtitle"></td>
+						</tr>
+						<tr>
+							<td><label for="newCompOpusNum">Opus: </label></td>
+							<td><input type="text" id="newCompOpusNum" data-ng-model="newComposition.opusNumber"></td>
+						</tr>
+						<tr>
+							<td><label for="newCompYear">Year: </label></td>
+							<td><input type="text" id="newCompYear" data-ng-model="newComposition.yearWritten"></td>
+						</tr>
+						<tr>
+							<td><label for="newComposer">Composer: </label></td>
+							<td><input type="text" id="newComposer" data-ng-model="newComposition.composer"></td>
+						</tr>
+						<tr>
+							<td><label for="newDuration">Duration: </label></td>
+							<td><input type="text" id="newDuration" data-ng-model="newComposition.duration"></td>
+						</tr>
+						<tr>
+							<td><label for="newPublisher">Publisher: </label></td>
+							<td><input type="text" id="newPublisher" data-ng-model="newComposition.publisher"></td>
+						</tr>
+						<tr>
+							<td><label for="newCopyright">Copyright: </label></td>
+							<td><input type="text" id="newCopyright" data-ng-model="newComposition.copyright"></td>
+						</tr>
+						<tr>
+							<td><label for="newDescription">Description: </label></td>
+							<td><input type="text" id="newDescription" data-ng-model="newComposition.description"></td>
+						</tr>
+					</table>
+
+					<button type="submit" data-ng-click="create(newComposition)" id="submit-comp">Save Composition</button>
+				</form>
+
+				<ul data-ng-repeat="composition in compositions" >
+					<li class="composition-listing">
+						<ul>
+							<li class="title">{{composition.title}}</li>
+							<li class="subtitle">{{composition.subtitle}}</li>
+							<li class="opusNumber">Opus {{composition.opusNumber}}</li>
+							<li class="yearWritten">Year: {{composition.yearWritten}}</li>
+							<li class="composer">By {{composition.composer}}</li>
+							<li class="duration">Dur. {{composition.duration}}</li>
+							<li class="publisher">Publisher: {{composition.publisher}}</li>
+							<li class="copyright">&copy; {{composition.copyright}}</li>
+							<li class="description">Description: {{composition.description}}</li>
+						</ul>
+						<button data-ng-click="remove(composition)" class="remove-comp">Delete Composition</button>
+					</li>
+				</ul>
+			</main>
+		</div>
+		<script src="bundle.js"></script>
+	</body>
+
+</html>
