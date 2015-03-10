@@ -6,7 +6,7 @@ var express = require('express'),
 	app,
 	mainRouter;
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/compositionapp_dev');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/compositionapp_dev');
 
 app = express();
 app.use(express.static(__dirname + '/build'));
