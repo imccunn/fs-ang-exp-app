@@ -1,28 +1,28 @@
 'use strict';
 
 process.env.MONGO_URI = 'mongodb://localhost/compositionapp_dev';
-require('../server.js');
-var mongoose = require('mongoose');
-var chai = require('chai');
-var chaihttp = require('chai-http');
+
+var mongoose = require('mongoose'),
+    chai = require('chai'),
+    chaihttp = require('chai-http'),
+    expect = chai.expect,
+    server = 'localhost:3333/api/v1';
+
 chai.use(chaihttp);
+require('../server.js');
 
-var expect = chai.expect;
-
-var server = 'localhost:3333/api/v1';
-
-describe('Compositions API endpoint tests (compositions/)', function() {
-  after(function(done) {
-    mongoose.connection.db.dropDatabase(function() {
+describe('Compositions API endpoint tests (compositions/)', function () {
+  after(function (done) {
+    mongoose.connection.db.dropDatabase(function () {
       done();
     });
   });
 
-  it('Should handle POST request and send sent data back', function(done) {
+  it('Should handle POST request and send sent data back', function (done) {
     chai.request(server)
       .post('/compositions')
       .send({title: 'test title', subtitle: 'test subtitle'})
-      .end(function(err, res) {
+      .end(function (err, res) {
         expect(err).to.eql(null);
         expect(res.body).to.have.property('_id');
         expect(res.body.title).to.eql('test title');
@@ -31,52 +31,50 @@ describe('Compositions API endpoint tests (compositions/)', function() {
       });
   });
 
- 
-  describe('Tests with data already in database:', function() {
+  describe('Tests with data already in database:', function () {
     var id;
-    beforeEach(function(done){
+    beforeEach(function (done) {
       chai.request(server)
         .post('/compositions')
         .send({title: 'test title'})
-        .end(function(err, res) {
-          id = res.body._id; 
+        .end(function (err, res) {
+          id = res.body._id;
           done();
         });
     });
 
-    it('GET request should respond with appropriate data.', function(done) {
+    it('GET request should respond with appropriate data.', function (done) {
       chai.request(server)
         .get('/compositions')
-        .end(function(err, res){
+        .end(function (err, res) {
           expect(err).to.eql(null);
-          expect(Array.isArray(res.body)).to.be.true;
+          expect(Array.isArray(res.body)).to.eql(true);
           expect(res.body[0]).to.have.property('title');
           done();
         });
     });
 
-    it('PUT request should update database entry and send updated data back.', function(done) {
+    it('PUT request should update database entry and send updated data back.', function (done) {
       chai.request(server)
         .put('/compositions/' + id)
         .send({title: 'test title'})
-        .end(function(err, res) {
+        .end(function (err, res) {
           expect(err).to.eql(null);
           expect(res.body.title).to.eql('test title');
           done();
         });
     });
 
-    it('DELETE request should remove a resource and send a success message back.', function(done) {
+    it('DELETE request should remove a resource and send a success message back.', function (done) {
       chai.request(server)
         .delete('/compositions/' + id)
-        .end(function(err, res) {
+        .end(function (err, res) {
           expect(err).to.eql(null);
           expect(res).to.have.status(200);
           expect(res.body).to.have.property('msg');
           expect(res.body.msg).to.eql('Successfully removed composition.');
           done();
         });
-
     });
   });
 });

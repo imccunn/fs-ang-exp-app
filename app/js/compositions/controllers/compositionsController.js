@@ -1,64 +1,64 @@
 'use strict';
 
-module.exports = function(app) {
-  app.controller('compositionsController', ['$scope', '$http', function($scope, $http) {
+module.exports = function (app) {
+  app.controller('compositionsController', ['$scope', '$http', function ($scope, $http) {
     $scope.compositions = [];
 
-    $scope.getAll = function() {
+    $scope.getAll = function () {
       $http({
         method: 'GET',
         url: '/api/v1/compositions'
       })
-      .success(function(data) {
+      .success(function (data) {
         $scope.compositions = data;
       })
-      .error(function(data) {
+      .error(function (data) {
         console.log(data);
       });
     };
 
-    $scope.create = function(composition) {
+    $scope.create = function (composition) {
       $http({
         method: 'POST',
         url: '/api/v1/compositions',
         data: composition
       })
-      .success(function(data) {
+      .success(function (data) {
         $scope.compositions.push(data);
       })
-      .error(function(data) {
+      .error(function (data) {
         console.log(data);
       });
     };
 
-    $scope.save = function(composition) {
+    $scope.save = function (composition) {
       $http({
         method: 'PUT',
         url: '/api/v1/compositions/' + composition._id,
         data: composition
       })
-      .success(function() {
+      .success(function () {
         composition.editing = false;
       })
-      .error(function(data) {
+      .error(function (data) {
         console.log(data);
       });
     };
 
-    $scope.remove = function(composition) {
+    $scope.remove = function (composition) {
       $http({
         method: 'DELETE',
         url: '/api/v1/compositions/' + composition._id
       })
-      .success(function() {
+      .success(function () {
         $scope.compositions.splice($scope.compositions.indexOf(composition), 1);
       })
-      .error(function(data) {
+      .error(function (data) {
         console.log(data);
       });
     };
 
-    $scope.editToggle = function(composition) {
+    $scope.editToggle = function (composition) {
       if (composition.editing) {
         composition.title = composition.oTitle;
         composition.subtitle = composition.oSubtitle;
@@ -83,6 +83,5 @@ module.exports = function(app) {
          composition.editing = true;
       }
     };
-
   }]);
 };

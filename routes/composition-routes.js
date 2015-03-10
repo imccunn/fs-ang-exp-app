@@ -1,14 +1,14 @@
 'use strict';
 
-var Composition = require('../models/Composition');
-var bodyparser = require('body-parser');
+var Composition = require('../models/Composition'),
+    bodyparser = require('body-parser');
 
-module.exports = function(app) {
-  
+module.exports = function (app) {
+
   app.use(bodyparser.json());
 
-  app.get('/compositions', function(req, res) {
-    Composition.find({}, function(err, data) {
+  app.get('/compositions', function (req, res) {
+    Composition.find({}, function (err, data) {
       if (err) {
         res.status(500).send({'msg': 'Error: Unable to retrieve compositions.'});
         return;
@@ -16,10 +16,10 @@ module.exports = function(app) {
       res.json(data);
     });
   });
-  
-  app.post('/compositions', function(req, res) {
+
+  app.post('/compositions', function (req, res) {
     var newComposition = new Composition(req.body);
-    newComposition.save(function(err, composition) {
+    newComposition.save(function (err, composition) {
       if (err) {
         res.status(500).send({'msg': 'Error: Unable to save composition data.'});
         return;
@@ -28,10 +28,10 @@ module.exports = function(app) {
     });
   });
 
-  app.put('/compositions/:id', function(req, res) {
+  app.put('/compositions/:id', function (req, res) {
     var updatedComposition = req.body;
     delete updatedComposition._id;
-    Composition.update({_id: req.params.id}, updatedComposition, function(err) {
+    Composition.update({_id: req.params.id}, updatedComposition, function (err) {
       if (err) {
         res.status(500).send({'msg': 'Error: Unable to update composition.'});
         return;
@@ -40,8 +40,8 @@ module.exports = function(app) {
     });
   });
 
-  app.delete('/compositions/:id', function(req, res) {
-    Composition.remove({_id: req.params.id}, function(err) {
+  app.delete('/compositions/:id', function (req, res) {
+    Composition.remove({_id: req.params.id}, function (err) {
       if (err) {
         res.status(500).send({'msg': 'Error: Unable to delete composition data.'});
         return;
