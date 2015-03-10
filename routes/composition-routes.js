@@ -9,7 +9,6 @@ module.exports = function (app) {
 
   app.get('/', function(req, res) {
     res.sendfile('../app/index.html');
-
   });
 
   app.get('/compositions', function (req, res) {
