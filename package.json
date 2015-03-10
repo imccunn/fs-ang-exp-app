@@ -1,0 +1,49 @@
+{
+  "name": "fs-ang-exp-app",
+  "version": "0.1.0",
+  "description": "A basic angular app with node/express server and mongoDB persistence.",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.2",
+    "mongoose": "^3.8.24"
+  },
+  "devDependencies": {
+    "chai": "^2.1.1",
+    "chai-http": "^1.0.0",
+    "debowerify": "^1.2.0",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.5.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-jscs": "^1.5.0",
+    "grunt-karma": "^0.10.1",
+    "grunt-simple-mocha": "^0.4.0",
+    "jasmine-core": "^2.2.0",
+    "jscs": "^1.11.3",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "mocha": "^2.2.0"
+  },
+  "scripts": {
+    "test": "grunt",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imccunn/fs-ang-exp-app.git"
+  },
+  "author": "Ian D. McCunn <ianmccunn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imccunn/fs-ang-exp-app/issues"
+  },
+  "homepage": "https://github.com/imccunn/fs-ang-exp-app"
+}
