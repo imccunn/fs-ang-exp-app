@@ -45,5 +45,8 @@
   "bugs": {
     "url": "https://github.com/imccunn/fs-ang-exp-app/issues"
   },
-  "homepage": "https://github.com/imccunn/fs-ang-exp-app"
+  "homepage": "https://github.com/imccunn/fs-ang-exp-app",
+  "engines": {
+    "node": "0.10.35"
+  }
 }
