@@ -7,6 +7,11 @@ module.exports = function (app) {
 
   app.use(bodyparser.json());
 
+  app.get('/', function(req, res) {
+    res.sendfile('../app/index.html');
+
+  });
+
   app.get('/compositions', function (req, res) {
     Composition.find({}, function (err, data) {
       if (err) {
