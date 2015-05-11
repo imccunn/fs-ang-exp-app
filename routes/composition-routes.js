@@ -7,7 +7,7 @@ module.exports = function (app) {
 
   app.use(bodyparser.json());
 
-  app.get('/', function(req, res) {
+  app.get('/', function (req, res) {
     res.sendfile('../build/index.html');
   });
 
