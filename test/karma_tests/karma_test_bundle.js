@@ -28677,7 +28677,7 @@ var minlengthDirective = function() {
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
 },{}],5:[function(require,module,exports){
-'use strict'
+'use strict';
 
 require('../../app/js/client');
 require("./../../bower_components/angular-mocks/angular-mocks.js");
