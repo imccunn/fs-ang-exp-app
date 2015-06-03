@@ -19,7 +19,10 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       dev: {
-        src: ['Gruntfile.js', 'test/compositions_api_test.js', 'server.js', 'models/**/*.js', 'routes/**/*.js', 'app/**/*.js']
+        src: ['Gruntfile.js', 'test/composition_api_test.js', 'server.js', 'models/**/*.js', 'routes/**/*.js', 'app/**/*.js', '!**/bundle.js', '!**/*_bundle.js']
+      },
+      client: {
+        src: ['test/karma_tests/compositions_controller_test.js'] 
       }
     },
 
@@ -79,7 +82,7 @@ module.exports = function(grunt) {
   });
   
   // Server
-  grunt.registerTask('test', ['jshint', 'jscs', 'simplemocha']);
+  grunt.registerTask('test', ['jshint:dev', 'jshint:client', 'jscs', 'simplemocha']);
   grunt.registerTask('default', ['test']);
   
   // Client tests
